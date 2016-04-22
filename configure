@@ -1,0 +1,21 @@
+#! /bin/bash
+export R_HOME
+CXX=$(R CMD config CXX)
+#CXXFLAGS="$(R CMD config CXX1XSTD) $(R CMD config CXX1XFLAGS)"
+CXXFLAGS="$(R CMD config CXX1XFLAGS)"
+# $(R CMD config DYLIB_LDFLAGS)"
+CPPFLAGS=$(R CMD config CPPFLAGS)
+BLAS_LIBS=$(R CMD config BLAS_LIBS)
+LAPACK_LIBS=$(R CMD config LAPACK_LIBS)
+export CXX
+export CXXFLAGS
+export CPPFLAGS
+export BLAS_LIBS
+export LAPACK_LIBS
+export R_INCLUDE_DIR
+RSITKLIB=$(Rscript -e 'cat(paste0( system.file("libs", package="SimpleITK"),"/SimpleITK.so"))')
+export RSITKLIB
+
+
+cd src
+cmake . $@
