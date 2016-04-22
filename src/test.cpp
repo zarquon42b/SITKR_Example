@@ -11,7 +11,7 @@ extern "C" {
       sitk::Image * image = convertSwigSimpleITKImage(img);
       int dim = image->GetDimension();
       SEXP myint;
-      PROTECT(myint = NEW_INTEGER(1)); // Allocate storage space, with default 5 zeroes
+      PROTECT(myint = NEW_INTEGER(1));
       p_myint = INTEGER_POINTER(myint);
       *p_myint = dim;
 
